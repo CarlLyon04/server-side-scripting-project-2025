@@ -24,7 +24,7 @@ class CollegeController extends Controller
         $college->title = $request->title;
         $college->address = $request->address;
 
-        // Save the newly created student
+        // Save the newly created college
         $college->save();
     }
 

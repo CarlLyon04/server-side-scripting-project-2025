@@ -14,11 +14,11 @@ class StudentController extends Controller
         $college = College::find($collegeId);
 
         // Show all students attending the college
-        $students = $college->students;
+        $students = $college->students->orderByRaw();
         return $students;
     }
     
-    // 2A: Create student
+    // 2A: Navigates the user to the 'Create student' form
     public function create(){
         return view('students.create');
     }
@@ -31,9 +31,12 @@ class StudentController extends Controller
         $student->phone = $request->phone;
         $student->dob = $request->dob;
         $student->college_id = $request->college_id;
+    
+        // Save the newly created student
+        $student->save();
     }
     
-    // 3A: Edit student
+    // 3A: Navigates the user to the 'Edit student' form
     public function edit(Student $student){
         return view('students.edit');
     }
