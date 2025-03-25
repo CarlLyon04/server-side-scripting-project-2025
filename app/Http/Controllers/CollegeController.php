@@ -9,19 +9,16 @@ class CollegeController extends Controller
 {
     // 1: List all colleges
     public function index(){
-        $colleges = College::all();
-        return view('colleges.index', compact('colleges'));
+        // -TBA
     }
 
     // 2: Create college
-
     public function create(){
-        return view('colleges.create');
+        // -TBA
     }
 
     // 3: Edit college
-
     public function edit(College $college){
-        return view('colleges.edit', compact('college'));
+        // -TBA
     }
 }

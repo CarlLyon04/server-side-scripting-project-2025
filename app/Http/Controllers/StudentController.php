@@ -7,27 +7,23 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    // 1: List all students
+    // 1: List all students (Filtering by college)
     public function index(){
-        $students = Student::all();
-        return view('students.index', compact('students'));
+        // -TBA
     }
     
     // 2: Create student
-    
     public function create(){
-        return view('students.create');
+        // -TBA
     }
     
     // 3: Edit student
-    
     public function edit(Student $student){
-        return view('students.edit', compact('students'));
+        // -TBA
     }
 
     // 4: Delete student
-    public function delete(Student $student){
-        $student->delete();
-        return redirect()->route('students.index');
+    public function destroy(Student $student){
+        // -TBA
     }
 }
