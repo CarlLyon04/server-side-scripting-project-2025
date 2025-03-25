@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+// College Route
+Route::resource('colleges', CollegeController::class);
+
+// Student Route
+Route::resource('students', StudentController::class);
