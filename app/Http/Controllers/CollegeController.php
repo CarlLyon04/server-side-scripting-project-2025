@@ -9,16 +9,36 @@ class CollegeController extends Controller
 {
     // 1: List all colleges
     public function index(){
-        // -TBA
+        $colleges = College::all();
+        return $colleges;
     }
 
-    // 2: Create college
+    // 2A: Navigates the user to the 'Create college' form
     public function create(){
-        // -TBA
+        return view('colleges.create');
     }
 
-    // 3: Edit college
+    // 2B: Store college
+    public function store(Request $request){
+        $college = new College();
+        $college->title = $request->title;
+        $college->address = $request->address;
+
+        // Save the newly created student
+        $college->save();
+    }
+
+    // 3A: Navigates the user to the 'Edit college' form
     public function edit(College $college){
-        // -TBA
+        return view('colleges.edit');
+    }
+
+    // 3B: Update college
+    public function update(Request $request, College $college){
+        $college->title = $request->title;
+        $college->address = $request->address;
+
+        // Save the updated college details
+        $college->save();
     }
 }
