@@ -10,7 +10,8 @@ class CollegeController extends Controller
     // 1: List all colleges - (Still needs to be tested)
     public function index(){
         $colleges = College::all();
-        return $colleges;
+        
+        return view('colleges.index', compact('colleges'));
     }
 
     // 2A: Navigates the user to the 'Create college' form  - (Still needs to be tested)
@@ -26,6 +27,9 @@ class CollegeController extends Controller
 
         // Save the newly created college
         $college->save();
+
+        // Redirect back to the colleges index route
+        return redirect()->route('colleges.index');
     }
 
     // 3A: Navigates the user to the 'Edit college' form  - (Still needs to be tested)
@@ -40,5 +44,8 @@ class CollegeController extends Controller
 
         // Save the updated college details
         $college->save();
+
+        // Redirect back to the colleges index route
+        return redirect()->route('colleges.index');       
     }
 }
