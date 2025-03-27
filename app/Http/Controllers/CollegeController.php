@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use app\Models\College;
+use App\Models\College;
 use Illuminate\Http\Request;
 
 class CollegeController extends Controller
@@ -11,7 +11,7 @@ class CollegeController extends Controller
     public function index(){
         $colleges = College::all();
         
-        return view('colleges.index', compact('colleges'));
+        return view('colleges.colleges-index', compact('colleges'));
     }
 
     // 2A: Navigates the user to the 'Create college' form  - (Still needs to be tested)
@@ -30,6 +30,10 @@ class CollegeController extends Controller
 
         // Redirect back to the colleges index route
         return redirect()->route('colleges.index');
+    }
+
+    public function show(){
+
     }
 
     // 3A: Navigates the user to the 'Edit college' form  - (Still needs to be tested)
