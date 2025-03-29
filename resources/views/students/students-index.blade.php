@@ -12,35 +12,32 @@
                     <th scope="col">Student Email</th>
                     <th scope="col">Student Phone</th>
                     <th scope="col">Student Date of Birth</th>
+                    <th scope="col">College ID</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
+                @forelse($students as $student)
                 <tr>
-                    <th scope="row">1</th>
-                    <td>John Doe</td>
-                    <td>johndoe@test.com</td>
-                    <td>+35612345678</td>
-                    <td>01/01/2000</td>
+                    <th scope="row">{{$student->id}}</th>
+                    <td>{{$student->name}}</td>
+                    <td>{{$student->email}}</td>
+                    <td>{{$student->phone}}</td>
+                    <td>{{$student->dob}}</td>
+                    <td>{{$student->college_id}}</td>
                     <td>
-                        <a class="btn btn-sm btn-primary" href="#" role="button">View</a>
-                        <a class="btn btn-sm btn-warning" href="" role="button">Edit</a>
-                        <a class="btn btn-sm btn-danger" href="" role="button">Delete</a>
-                    </td>
-
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jane Doe</td>
-                    <td>janedoe@test.com</td>
-                    <td>+35687654321</td>
-                    <td>01/01/2000</td>
-                    <td>
-                        <a class="btn btn-sm btn-primary" href="#" role="button">View</a>
-                        <a class="btn btn-sm btn-warning" href="" role="button">Edit</a>
-                        <a class="btn btn-sm btn-danger" href="" role="button">Delete</a>
+                        <a class="btn btn-sm btn-primary" href="{{ route('students.show', $student->id) }}" role="button">View</a>
+                        <a class="btn btn-sm btn-warning" href="{{ route('students.edit', $student->id) }}" role="button">Edit</a>
+                        <form action="{{ route('students.destroy', $student->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
                     </td>
                 </tr>
+                @empty
+                    <p>No Students found</p>
+                @endforelse
             </tbody>
             <table>
     </div>

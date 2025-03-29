@@ -10,7 +10,7 @@
         <input type="text" name="name" class="form-control" id="collegeNameInput">
     </div>
     <div class="mb-3">
-        <label for="address" class="form-label">College Address</label>
+        <label for="collegeAddressInput" class="form-label">College Address</label>
         <input type="text" name="address" class="form-control" id="collegeAddressInput">
     </div>
    <button type="submit" class="btn btn-success">Create College</button>

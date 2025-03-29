@@ -11,7 +11,7 @@ class StudentController extends Controller
     // 1: List all students (Filtering by college) - Still need ot add sorting  - (Still needs to be tested)
     public function index(){
         // // Get the college from the college id
-        // $college = College::find($collegeId);
+         //$college = College::find($collegeId);
 
         // // Show all students attending the college
         // $students = $college->students;
@@ -19,14 +19,12 @@ class StudentController extends Controller
         $students = Student::all();
         // Redirect to the index view
         return view('students.students-index', compact('students'));
-
-                
-        
     }
     
     // 2A: Navigates the user to the 'Create student' form  - (Still needs to be tested)
     public function create(){
-        return view('students.students-create');
+        $colleges = College::all();
+        return view('students.students-create', compact('colleges'));
     }
 
     // 2B: Store student  - (Still needs to be tested)
@@ -36,7 +34,9 @@ class StudentController extends Controller
         $student->email = $request->email;
         $student->phone = $request->phone;
         $student->dob = $request->dob;
-        $student->college_id = $request->college_id;
+
+        $college = College::where('name', $request->collegeName)->first();
+        $student->college_id = $college->id;
     
         // Save the newly created student
         $student->save();
@@ -47,12 +47,13 @@ class StudentController extends Controller
 
     // For viewing
     public function show(Student $student){
-        return view('students.students-view');
+        return view('students.students-view', compact('student'));
     }
     
     // 3A: Navigates the user to the 'Edit student' form  - (Still needs to be tested)
     public function edit(Student $student){
-        return view('students.students-edit');
+        $colleges = College::all();
+        return view('students.students-edit', compact('student', 'colleges'));
     }
 
     // 3B: Update student  - (Still needs to be tested)
@@ -61,8 +62,9 @@ class StudentController extends Controller
         $student->email = $request->email;
         $student->phone = $request->phone;
         $student->dob = $request->dob;
-        $student->college_id = $request->college_id;
-
+        
+        $college = College::where('name', $request->collegeName)->first();
+        $student->college_id = $college->id;
         // Save the updated student details
         $student->save();
 
@@ -70,8 +72,12 @@ class StudentController extends Controller
         return redirect()->route('students.index');
     }
 
-    // 4: Delete student  - (Still needs to be tested)
+    // 4: Delete
     public function destroy(Student $student){
+        // Delete the student record
         $student->delete();
+        
+        // Redirect back to the students index route
+        return redirect()->route('students.index');
     }
 }
