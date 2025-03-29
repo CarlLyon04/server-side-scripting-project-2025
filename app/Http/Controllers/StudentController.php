@@ -2,27 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use app\Models\Student;
-use app\Models\College;
+use App\Models\Student;
+use App\Models\College;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
     // 1: List all students (Filtering by college) - Still need ot add sorting  - (Still needs to be tested)
-    public function index($collegeId){
-        // Get the college from the college id
-        $college = College::find($collegeId);
+    public function index(){
+        // // Get the college from the college id
+        // $college = College::find($collegeId);
 
-        // Show all students attending the college
-        $students = $college->students;
+        // // Show all students attending the college
+        // $students = $college->students;
 
+        $students = Student::all();
         // Redirect to the index view
-        return view('students.index', compact('students'));
+        return view('students.students-index', compact('students'));
+
+                
+        
     }
     
     // 2A: Navigates the user to the 'Create student' form  - (Still needs to be tested)
     public function create(){
-        return view('students.create');
+        return view('students.students-create');
     }
 
     // 2B: Store student  - (Still needs to be tested)
@@ -43,7 +47,7 @@ class StudentController extends Controller
     
     // 3A: Navigates the user to the 'Edit student' form  - (Still needs to be tested)
     public function edit(Student $student){
-        return view('students.edit');
+        return view('students.students-edit');
     }
 
     // 3B: Update student  - (Still needs to be tested)
