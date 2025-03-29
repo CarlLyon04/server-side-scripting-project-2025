@@ -24,6 +24,4 @@ Route::resource('colleges', CollegeController::class);
 Route::resource('students', StudentController::class);
 
 // The new default landing page
-Route::get('/', function () {
-    return view('students.students-edit');
-});
+Route::redirect('/', '/colleges');

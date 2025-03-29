@@ -16,13 +16,14 @@ class CollegeController extends Controller
 
     // 2A: Navigates the user to the 'Create college' form  - (Still needs to be tested)
     public function create(){
+
         return view('colleges.colleges-create');
     }
 
     // 2B: Store college  - (Still needs to be tested)
     public function store(Request $request){
         $college = new College();
-        $college->title = $request->title;
+        $college->name = $request->name;
         $college->address = $request->address;
 
         // Save the newly created college
@@ -34,17 +35,17 @@ class CollegeController extends Controller
 
     // For viewing: 
     public function show(College $college){
-        return view('colleges.colleges-view');
+        return view('colleges.colleges-view', compact('college'));
     }
 
     // 3A: Navigates the user to the 'Edit college' form  - (Still needs to be tested)
     public function edit(College $college){
-        return view('colleges.colleges-edit');
+        return view('colleges.colleges-edit', compact('college'));
     }
 
     // 3B: Update college  - (Still needs to be tested)
     public function update(Request $request, College $college){
-        $college->title = $request->title;
+        $college->name = $request->name;
         $college->address = $request->address;
 
         // Save the updated college details

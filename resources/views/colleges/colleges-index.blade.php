@@ -14,25 +14,19 @@
                 </tr>
             </thead>
             <tbody>
+                @forelse($colleges as $college)
                 <tr>
-                    <th scope="row">1</th>
-                    <td>MCAST</td>
-                    <td>Poala</td>
+                    <th scope="row">{{$college->id}}</th>
+                    <td>{{$college->name}}</td>
+                    <td>{{$college->address}}</td>
                     <td>
-                        <a class="btn btn-sm btn-primary" href="#" role="button">View</a>
-                        <a class="btn btn-sm btn-warning" href="" role="button">Edit</a>
-                    </td>
-
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>UoM</td>
-                    <td>Msida</td>
-                    <td>
-                        <a class="btn btn-sm btn-primary" href="#" role="button">View</a>
-                        <a class="btn btn-sm btn-warning" href="" role="button">Edit</a>
+                        <a class="btn btn-sm btn-primary" href="{{ route('colleges.show', $college->id) }}" role="button">View</a>
+                        <a class="btn btn-sm btn-warning" href="{{ route('colleges.edit', $college->id) }}" role="button">Edit</a>
                     </td>
                 </tr>
+                @empty
+                    <p>No Colleges found</p>
+                @endforelse
             </tbody>
             <table>
     </div>
