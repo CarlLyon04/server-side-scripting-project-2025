@@ -32,8 +32,9 @@ class CollegeController extends Controller
         return redirect()->route('colleges.index');
     }
 
-    public function show(){
-
+    // For viewing: 
+    public function show(College $college){
+        return view('colleges.colleges-view');
     }
 
     // 3A: Navigates the user to the 'Edit college' form  - (Still needs to be tested)

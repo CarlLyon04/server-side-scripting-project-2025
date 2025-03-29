@@ -21,6 +21,8 @@
         <input type="text" class="form-control" id="collegeAddressInput">
     </div>
    <button type="submit" class="btn btn-success">Create Student</button>
+   <a class="btn btn-primary" href="{{ route('students.index') }}" role="button">Go back to students index page</a>
+
 </form>
 
 @endsection

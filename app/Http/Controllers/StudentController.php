@@ -44,6 +44,11 @@ class StudentController extends Controller
         // Redirect back to the students index route
         return redirect()->route('students.index');
     }
+
+    // For viewing
+    public function show(Student $student){
+        return view('students.students-view');
+    }
     
     // 3A: Navigates the user to the 'Edit student' form  - (Still needs to be tested)
     public function edit(Student $student){

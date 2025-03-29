@@ -13,6 +13,8 @@
         <input type="text" class="form-control" id="collegeAddressInput">
     </div>
    <button type="submit" class="btn btn-success">Edit College</button>
+   <a class="btn btn-primary" href="{{ route('colleges.index') }}" role="button">Go back to colleges index page</a>
+
 </form>
 
 @endsection
