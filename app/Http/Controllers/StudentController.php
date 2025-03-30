@@ -9,16 +9,18 @@ use Illuminate\Http\Request;
 class StudentController extends Controller
 {
     // 1: List all students (Filtering by college) - Still need ot add sorting  - (Still needs to be tested)
-    public function index(){
+    public function index(Request $request){
         // // Get the college from the college id
          //$college = College::find($collegeId);
 
         // // Show all students attending the college
         // $students = $college->students;
 
-        $students = Student::all();
+        $sortStudents= $request->get('sortStudents', 'id');
+
+        $students = Student::orderBy($sortStudents)->get();
         // Redirect to the index view
-        return view('students.students-index', compact('students'));
+        return view('students.students-index', compact('students', 'sortStudents'));
     }
     
     // 2A: Navigates the user to the 'Create student' form  - (Still needs to be tested)
