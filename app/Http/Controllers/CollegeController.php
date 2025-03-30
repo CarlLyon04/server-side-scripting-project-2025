@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\College;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class CollegeController extends Controller
 {

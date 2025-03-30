@@ -2,6 +2,13 @@
 
 @section("content")
 <h1 class="mb-4">List of Students</h2>
+    
+    @if(session('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+    </div>
+    @endif
+
     @include('students.students-sort-name')
     <br>
     @include('students.students-sort-college')

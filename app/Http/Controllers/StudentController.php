@@ -48,6 +48,15 @@ class StudentController extends Controller
 
     // 2B: Store student  - (Still needs to be tested)
     public function store(Request $request){
+        $request->validate(
+            ['name' => 'required|string|max:255', 
+             'email' => 'required|email|unique:students,email|string|max:255',
+             'phone' => 'required|regex:/^\+356\d{8}$/|string|max:255',
+             'dob' => 'required|date|date_format:Y/m/d|max:255',
+             'collegeName' => 'required|string|max:255'
+            ]
+        );
+
         $student = new Student();
         $student->name = $request->name;
         $student->email = $request->email;
@@ -61,7 +70,7 @@ class StudentController extends Controller
         $student->save();
 
         // Redirect back to the students index route
-        return redirect()->route('students.index');
+        return redirect()->route('students.index')->with('success', 'Succesfully created student');
     }
 
     // For viewing
@@ -77,6 +86,15 @@ class StudentController extends Controller
 
     // 3B: Update student  - (Still needs to be tested)
     public function update(Request $request, Student $student){
+        $request->validate(
+            ['name' => 'required|string|max:255', 
+             'email' => 'required|email|unique:students,email|string|max:255',
+             'phone' => 'required|regex:/^\+356\d{8}$/|string|max:255',
+             'dob' => 'required|date|date_format:Y/m/d|max:255',
+             'collegeName' => 'required|string|max:255'
+            ]
+        );
+        
         $student->name = $request->name;
         $student->email = $request->email;
         $student->phone = $request->phone;
@@ -88,7 +106,7 @@ class StudentController extends Controller
         $student->save();
 
         // Redirect back to the students index route
-        return redirect()->route('students.index');
+        return redirect()->route('students.index')->with('success', 'Succesfully updated student');
     }
 
     // 4: Delete
