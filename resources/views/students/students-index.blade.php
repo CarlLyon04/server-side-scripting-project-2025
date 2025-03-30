@@ -2,25 +2,9 @@
 
 @section("content")
 <h1 class="mb-4">List of Students</h2>
-    <form method="GET" action="{{ route('students.index') }}">
-        <label for="sortStudents" class="form-label">Sort: Students</label>
-        <select name="sortStudents" od="sortStudents" class="form-select" onchange="this.form.submit()">
-            <option value="id" @selected($sortStudents == 'id')>By ID</option>
-            <option value="name"  @selected($sortStudents == 'name')>By Name</option>
-        </select>
-    </form>
+    @include('students.students-sort-name')
     <br>
-    <form method="GET" action="{{ route('students.index') }}">
-        <label for="sortColleges" class="form-label">Sort: Colleges</label>
-        <select name="sortColleges" id="sortColleges" class="form-select" onchange="this.form.submit()">
-            <option value="">All Colleges</option>
-            @forelse($colleges as $college)
-                <option value="{{ $college->id }}" @selected($sortColleges == $college->id)>{{ $college->name}}</option>
-            @empty
-            <option disabled>No Students found</option>
-            @endforelse
-        </select>
-    </form>
+    @include('students.students-sort-college')
     <a class="btn btn-sm btn-success" href="{{ route('students.create') }}" role="button">Create a student</a>
     <div class="table-responsive">
         <table class="table table-bordered table-striped align-middle">
