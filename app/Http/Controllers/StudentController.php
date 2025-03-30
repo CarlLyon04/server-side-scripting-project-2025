@@ -10,17 +10,34 @@ class StudentController extends Controller
 {
     // 1: List all students (Filtering by college) - Still need ot add sorting  - (Still needs to be tested)
     public function index(Request $request){
-        // // Get the college from the college id
-         //$college = College::find($collegeId);
+        // Prepare a query to be used in filtering the students
+        $query = Student::query();
 
-        // // Show all students attending the college
-        // $students = $college->students;
+        // Retrieve all available colleges
+        $colleges = College::all();
 
+        // Retrieve the sorting filter for colleges
+        $sortColleges = $request->get('sortColleges');
+
+        // Retrieve the sorting filter for students
         $sortStudents= $request->get('sortStudents', 'id');
 
-        $students = Student::orderBy($sortStudents)->get();
+        // Choose between sorting by the colleges or the student (This functionality could be improved however as it does not allow filtering at the same time)
+        if($sortColleges){
+            // If a filter for colleges is chosen, filter based on the selected college
+            $query->where('college_id', $sortColleges);
+        }
+
+        else{
+            // If a filter for students is chosen, filter based on either the students ID or name (Ascending Order)
+            $query->orderBy($sortStudents);
+        }
+
+        // List the students based on the filtered query chosen
+        $students = $query->get();
+
         // Redirect to the index view
-        return view('students.students-index', compact('students', 'sortStudents'));
+        return view('students.students-index', compact('students', 'sortStudents', 'colleges', 'sortColleges'));
     }
     
     // 2A: Navigates the user to the 'Create student' form  - (Still needs to be tested)
