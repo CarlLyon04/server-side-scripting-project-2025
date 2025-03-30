@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\College;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CollegeController extends Controller
 {
@@ -22,6 +23,8 @@ class CollegeController extends Controller
 
     // 2B: Store college  - (Still needs to be tested)
     public function store(Request $request){
+        $request->validate(['name' => 'required|unique:colleges,name|string|max:255', 'address' => 'required|string|max:255']);
+
         $college = new College();
         $college->name = $request->name;
         $college->address = $request->address;
@@ -30,7 +33,7 @@ class CollegeController extends Controller
         $college->save();
 
         // Redirect back to the colleges index route
-        return redirect()->route('colleges.index');
+        return redirect()->route('colleges.index')->with('success', 'Succesfully created college');
     }
 
     // For viewing: 
@@ -45,6 +48,8 @@ class CollegeController extends Controller
 
     // 3B: Update college  - (Still needs to be tested)
     public function update(Request $request, College $college){
+        $request->validate(['name' => 'required|string|max:255|', 'address' => 'required|string|max:255']);
+
         $college->name = $request->name;
         $college->address = $request->address;
 
@@ -52,6 +57,6 @@ class CollegeController extends Controller
         $college->save();
 
         // Redirect back to the colleges index route
-        return redirect()->route('colleges.index');       
+        return redirect()->route('colleges.index')->with('success', 'Succesfully updated college');       
     }
 }

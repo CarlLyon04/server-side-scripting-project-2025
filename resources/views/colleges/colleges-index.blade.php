@@ -2,6 +2,11 @@
 
 @section("content")
 <h1 class="mb-4">List of Colleges</h2>
+    @if(session('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+    </div>
+    @endif
 <a class="btn btn-sm btn-success" href="{{ route('colleges.create') }}" role="button">Create a college</a>
     <div class="table-responsive">
         <table class="table table-bordered table-striped align-middle">
