@@ -9,6 +9,8 @@ class Student extends Model
 {
     use HasFactory;
 
+    // Database relation definition (A student can be in one college)
+
     public function colleges(){
         return $this->belongsTo(College::class);
     }

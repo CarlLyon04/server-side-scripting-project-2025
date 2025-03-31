@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Call the defined college and student controllers
 use App\Http\Controllers\CollegeController;
-
 use App\Http\Controllers\StudentController;
 
 /*
@@ -17,11 +17,11 @@ use App\Http\Controllers\StudentController;
 |
 */
 
-// College Route
+// Definition for the resourceful College Route
 Route::resource('colleges', CollegeController::class);
 
-// Student Route
+// Definition for the resourceful Student Route
 Route::resource('students', StudentController::class);
 
-// The new default landing page
+// automatically redirect the user to the colleges index page upon loading the application
 Route::redirect('/', '/colleges');

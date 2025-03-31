@@ -1,15 +1,27 @@
+<!--Uses the master webpage layout-->
 @extends("layouts.master")
 
+<!--The modular section to be using the 'yield'-->
 @section("content")
 
 <h1 class="mb-4">Edit Student</h2>
-<form action="{{ route('students.update', $student->id) }}" method="POST">
-    @csrf
-    @method('PUT')
-    @include('students.students-form')
-   <button type="submit" class="btn btn-success">Edit Student</button>
-   <a class="btn btn-primary" href="{{ route('students.index') }}" role="button">Go back to students index page</a>
+    <!--A bootstrap form that calls the 'students.show' function from the students controller-->
+    <form action="{{ route('students.update', $student->id) }}" method="POST">
+        <!--Cross site request forgery protection (required for the form to work)-->
+        @csrf
 
-</form>
+        <!--PUT method used for updating the students-->
+        @method('PUT')
 
-@endsection
+        <!-- Partial view Form -->
+        @include('students.students-form')
+
+        <!--Form submit button-->
+        <button type="submit" class="btn btn-success">Edit Student</button>
+
+        <!--Bootstrap link to redirect the user back to the students index page-->
+        <a class="btn btn-primary" href="{{ route('students.index') }}" role="button">Go back to students index page</a>
+
+    </form>
+
+    @endsection
