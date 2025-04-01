@@ -19,12 +19,12 @@ class StudentController extends Controller
         // Retrieve the sorting filter for colleges
         $sortColleges = $request->get('sortColleges');
 
-        // Retrieve the sorting filter for students
+        // Retrieve the sorting filter for students (Using the ID by default)
         $sortStudents= $request->get('sortStudents', 'id');
 
         // Choose between sorting by the colleges or the student (This functionality could be improved however as it does not allow filtering at the same time)
         if($sortColleges){
-            // If a filter for colleges is chosen, filter based on the selected college
+            // If a filter for colleges is chosen, filter based on the selected college id
             $query->where('college_id', $sortColleges);
         }
 

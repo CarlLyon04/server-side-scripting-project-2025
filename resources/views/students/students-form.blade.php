@@ -27,7 +27,7 @@
     <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="email"
         value="{{ old('email') }}">
 
-    <!--Display a validation error if the name is invalid along with the reason for the issue-->
+    <!--Display a validation error if the email is invalid along with the reason for the issue-->
     @error('email')
     <div class="invalid-feedback">
         {{ $message }}
@@ -41,7 +41,7 @@
     <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" id="phone"
         value="{{ old('phone') }}">
     
-    <!--Display a validation error if the name is invalid along with the reason for the issue-->
+    <!--Display a validation error if the phone format is invalid along with the reason for the issue-->
     @error('phone')
     <div class="invalid-feedback">
         {{ $message }}
@@ -55,7 +55,7 @@
     <input type="text" name="dob" class="form-control @error('dob') is-invalid @enderror" id="dob"
         value="{{ old('dob') }}">
         
-    <!--Display a validation error if the name is invalid along with the reason for the issue-->
+    <!--Display a validation error if the date of birth format is invalid along with the reason for the issue-->
     @error('dob')
     <div class="invalid-feedback">
         {{ $message }}
@@ -84,5 +84,4 @@
             @empty
         <option value="No colleges to choose from... Please create a college prior to creating a student">
             @endforelse
-
 </div>

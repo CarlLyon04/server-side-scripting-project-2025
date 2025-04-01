@@ -9,11 +9,11 @@
 
         <!--For loop going over every existing college to filter-->
         @forelse($colleges as $college)
-        <option value="{{ $college->id }}" @selected($sortColleges==$college->id)>{{ $college->name}}</option>
+        <option value="{{ $college->id }}" @selected($sortColleges==$college->id)>{{$college->name}}</option>
         @empty
 
-        <!--Disable the option is no students exist-->
-        <option disabled>No Students found</option>
+        <!--Disable the option if no colleges exist-->
+        <option disabled>There are no colleges. Please create a college to assign a student.</option>
         @endforelse
     </select>
 </form>
